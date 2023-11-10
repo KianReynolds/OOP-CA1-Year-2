@@ -79,10 +79,16 @@ namespace CA1
         public string Face { get; set; }  //Ace, 2, 3... Jack...
         public string Suit { get; set; }  //spades, diamonds etc
 
-        public int Value { get; set; }
+        //public Card(string face, string suit) 
+        //{
+        //    Suit = suit;
+        //    Face= face;
+        //}
 
-        string[] faces = { "Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King" };
-        string[] suits = { "Hearts", "Spades", "Diamonds", "Clubs" };
+        public override string ToString()
+        {
+            return $"{Face} of {Suit}";
+        }
     }
     internal class Hand
     {
@@ -98,42 +104,38 @@ namespace CA1
         string[] faces = { "Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King" };
         string[] suits = { "Hearts", "Spades", "Diamonds", "Clubs" };
 
-        public Hand()
-        {
-            cards = new List<Card>();
-        }
+        
 
-        public void AddCard(Card card)
+        //public void AddCard(Card card)
+        //{
+        //    cards.Add(card);
+        //}
+        public Hand(Random rng)
         {
-            cards.Add(card);
-        }
-        public int GetTotal()
-        {
-            //Face = faces[rng.Next(0, 13)];
-            //Suit = suits[rng.Next(0, 4)];
-            int total = 0;  
-            int numAces=0;
+            Face = faces[rng.Next(0, 13)];
+            Suit = suits[rng.Next(0, 4)];
+            
 
-            foreach (Card card in cards)
-            {
+            
+            
                 if (Face == "Jack" || Face == "Queen" || Face == "King")
                 {
-                    Value = 10;
+                    Value += 10;
                 }
                 else if (Face == "Ace")
                 {
-                    Value = 11;
+                    Value += 11;
                 }
                 else
                 {
                     Value = int.Parse(Face);
                 }
-            }
-
         }
+
+        
         public override string ToString()
         {
-            return $"{Face} of  {Suit}";
+            return $"{Face} of  {Suit}"; 
         }
 
     }

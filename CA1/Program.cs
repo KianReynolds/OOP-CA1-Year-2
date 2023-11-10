@@ -10,9 +10,9 @@ namespace CA1
 
         static void Main(string[] args)
         {
-            Deck deck = new Deck();
+            //Deck deck = new Deck();
             //deck.DisplayCards();
-            deck.shuffleDeck();
+            //deck.shuffleDeck();
 
 
 
@@ -27,10 +27,15 @@ namespace CA1
             Hand c3 = new Hand(rng);
             int player3 = c3.Value;
 
-            Hand playerHand = new Hand(rng);
-            Hand dealerHand = new Hand(rng);
+            Hand c4 = new Hand(rng);
+            int dealer = c4.Value;
 
-            playerHand.
+            Hand c5 = new Hand(rng);
+            int dealer2 = c5.Value;
+            //Hand playerHand = new Hand(rng);
+            //Hand dealerHand = new Hand(rng);
+
+            
 
 
             //Console.ReadLine();
@@ -48,88 +53,105 @@ namespace CA1
 
             //add together
             playerScore = Sum(player1, player2);
-
-            //display total
-            Console.WriteLine($"The Player is dealt {player1}");
-            Console.WriteLine($"The Player is dealt {player2}");
-            Console.WriteLine($"The Players final score is {playerScore}");
-
-            //ask if you want another number
-            bool playAgain = false;
-            Console.WriteLine("Do you want to stick or twist - s/t?");
-            string response = Console.ReadLine();
-            if (response == "t")
-                playAgain = true;
-
-            while (playAgain)
+            string option;
+            bool choice = false;
+            while (choice == true)
             {
-                //get another
-                player3 = random.Next(1, 10);
-                Console.WriteLine(player3);
-
-                //add to total
-                playerScore += player3;
-
                 //display total
+                Console.WriteLine($"The Player is dealt {c1}");
+                Console.WriteLine($"The Player is dealt {c2}");
                 Console.WriteLine($"The Players final score is {playerScore}");
 
-                //ask for playAgain
+                //ask if you want another number
+                bool playAgain = false;
                 Console.WriteLine("Do you want to stick or twist - s/t?");
-                response = Console.ReadLine();
+                string response = Console.ReadLine();
                 if (response == "t")
                     playAgain = true;
+
+                while (playAgain)
+                {
+                    //get another
+                    player3 = random.Next(1, 10);
+                    Console.WriteLine(player3);
+
+                    //add to total
+                    playerScore += player3;
+
+                    //display total
+                    Console.WriteLine($"The Players final score is {playerScore}");
+
+                    //ask for playAgain
+                    Console.WriteLine("Do you want to stick or twist - s/t?");
+                    response = Console.ReadLine();
+                    if (response == "t")
+                        playAgain = true;
+                    else
+                        playAgain = false;
+                }
+
+                //if so repeat
+
+                
+
+
+
+                dealer = random.Next(1, 10);
+
+                dealer2 = random.Next(1, 10);
+
+
+                dealerScore = dealer + dealer2;
+
+
+                //Console.WriteLine("Do you want to stick or twist - s/t?");
+                //string answer = Console.ReadLine();
+                //Answer(answer);
+
+
+                Console.WriteLine("Dealer plays");
+                Console.WriteLine();
+                Console.WriteLine($"The Dealer is dealt {c4}");
+                Console.WriteLine($"The Dealer is dealt {c5}");
+                Console.WriteLine($"The Dealers final score is {dealerScore}");
+
+
+                if (playerScore > 21)
+                {
+                    Console.WriteLine("Player bust! Dealer wins");
+                }
+                else if (dealerScore > 21)
+                {
+                    Console.WriteLine("Dealer bust! Player wins");
+                }
+                else if (playerScore > dealerScore)
+                {
+                    Console.WriteLine("Player Wins");
+                }
+                else if (playerScore < dealerScore)
+                {
+                    Console.WriteLine("Dealer Wins");
+                }
                 else
-                    playAgain = false;
+                {
+                    Console.WriteLine("It's a tie");
+                }
+
+                Console.WriteLine("Would you like to play another round - y/n?");
+
             }
+            Console.WriteLine("Would you like to play again? y/n");
+            //int option = Console.ReadLine();
 
-            //if so repeat
+            //if (option == "y")
+            //{
+            //    choice = true;
+            //}
+            //else
+            //{
+            //    choice = false;
+            //}
 
-
-
-
-
-            int dealer = random.Next(1, 10);
-            
-            int dealer2 = random.Next(1,10);
-
-            
-             dealerScore = Sum(dealer, dealer2);
-            
-
-            //Console.WriteLine("Do you want to stick or twist - s/t?");
-            //string answer = Console.ReadLine();
-            //Answer(answer);
-
-
-            Console.WriteLine("Dealer plays");
-            Console.WriteLine();
-            Console.WriteLine($"The Dealer is dealt {dealer}");
-            Console.WriteLine($"The Dealer is dealt {dealer2}");
-            Console.WriteLine($"The Dealers final score is {dealerScore}");
-
-
-            if(playerScore > 21)
-            {
-                Console.WriteLine("Player bust! Dealer wins");
-            }else if(dealerScore > 21)
-            {
-                Console.WriteLine("Dealer bust! Player wins");
-            }
-            else if (playerScore > dealerScore)
-            {
-                Console.WriteLine("Player Wins");
-            }else if(playerScore < dealerScore) 
-            {
-                Console.WriteLine("Dealer Wins");
-            }else
-            {
-                Console.WriteLine("It's a tie");
-            }
-
-            Console.WriteLine("Would you like to play another round - y/n?");
-
-
-            
         }
 
         static int Sum(int num1, int num2)
